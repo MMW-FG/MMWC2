@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 26-08-2008 
+     30-08-2008  : Updated by AJ
+     04-09-2009  : Updated by Helijah
+     Janury 2012 : Updated by Christian Thiriot (Sounds modified based on real sounds of Lycoming)
+August/September 2015 : Updated by D-ECHO to fit Traveller
+-->
+
+<PropertyList>
+
+  <fx>
+ 
+    <crank>
+      <name>engstart</name>
+      <path>ea2015-engine-startup.wav</path>
+      <property>engines/engine/cranking</property>
+      <volume>
+        <offset>-0.6</offset>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </crank>
+
+    <crank>
+      <name>crank</name>
+      <mode>looped</mode>
+     <path>ea2015-engine-startup.wav</path>
+      <condition>
+        <property>engines/engine/cranking</property>
+        <not>
+          <property>engines/engine/running</property>
+        </not>
+      </condition>
+      <volume>
+        <offset>0.9</offset>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </crank>
+
+
+    <engine>
+      <name>engine</name>
+      <mode>looped</mode>
+      <path>Aircraft/MMWsounds/ea2015-engine.wav</path>
+      <condition>
+        <and>
+          <greater-than>
+            <property>engines/engine/rpm</property>
+            <value>60</value>
+          </greater-than>
+          <or>
+            <greater-than>
+              <property>instrumentation/doors/crew/position-norm</property>
+              <value>0</value>
+            </greater-than>
+            <not>
+              <property>sim/current-view/internal</property>
+            </not>
+          </or>
+        </and>
+      </condition>
+      <volume>
+        <property>engines/engine/mp-osi</property>
+        <factor>0.00375</factor>
+        <min>0.5</min>
+        <max>2.0</max>
+      </volume>
+      <pitch>
+        <property>engines/engine/rpm</property>
+        <factor>0.0005</factor>
+        <min>0.2</min>
+        <max>2.0</max>
+        <offset>0.15</offset>
+      </pitch>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </engine>
+
+    <engine-internal>
+      <name>engine-internal</name>
+      <mode>looped</mode>
+      <path>Aircraft/MMWsounds/ea2015-engine-internal.wav</path>
+      <condition>
+        <and>
+          <greater-than>
+            <property>engines/engine/rpm</property>
+            <value>60</value>
+          </greater-than>
+          <not>
+            <greater-than>
+              <property>instrumentation/doors/crew/position-norm</property>
+              <value>0</value>
+            </greater-than>
+          </not>
+        </and>
+      </condition>
+      <pitch>
+        <property>engines/engine/rpm</property>
+        <factor>0.0005</factor>
+        <min>0.2</min>
+        <max>2.0</max>
+        <offset>0.15</offset>
+      </pitch>
+      <reference-dist>4.0</reference-dist>
+      <max-dist>10.0</max-dist>
+      <position>
+      <x> -2.672 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </position>
+    </engine-internal>
+<stop>
+    <name>stop</name>
+    <path>Aircraft/MMWsounds/ea2015-engine-shutdown.wav</path>
+    <condition>
+      <not>
+            <property>/engines/engine/running</property>
+      </not>
+    </condition>
+       <volume>
+          <property>/sim/current-view/internal</property>
+               <factor>2.0</factor>
+      <offset>1.0</offset>
+       </volume>
+    <reference-dist>100</reference-dist>
+    <max-dist>1000</max-dist>
+    <position>
+      <x> -2.627 </x>
+      <y>  1.740 </y>
+      <z>  0.021 </z>
+    </position>
+  </stop> 
+    <propeller>
+      <name>propeller</name>
+      <mode>looped</mode>
+      <path>Aircraft/MMWsounds/ea2015-prop.wav</path>
+      <condition>
+        <greater-than>
+          <property>engines/engine/rpm</property>
+          <value>60</value>
+        </greater-than>
+        <not>
+          <and>
+            <equals>
+              <property>instrumentation/doors/crew/position-norm</property>
+              <value>0</value>
+            </equals>
+            <property>sim/current-view/internal</property>
+          </and>
+        </not>
+      </condition>
+      <pitch>
+        <property>/engines/engine/mp-osi</property>
+        <factor>0.0036</factor>
+        <min>0.5</min>
+        <max>2.0</max>
+        <offset>0.9</offset>
+      </pitch>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </propeller>
+    
+   
+    
+    <rumble>
+      <name>rumble</name>
+      <mode>looped</mode>
+      <path>Sounds/rumble.wav</path>
+      <condition>
+        <and>
+          <or>
+            <property>gear/gear[0]/wow</property>
+            <property>gear/gear[1]/wow</property>
+            <property>gear/gear[2]/wow</property>
+          </or>
+          <or>
+            <greater-than>
+              <property>gear/gear[0]/rollspeed-ms</property>
+              <value>1</value>
+            </greater-than>
+            <greater-than>
+              <property>gear/gear[1]/rollspeed-ms</property>
+              <value>1</value>
+            </greater-than>
+            <greater-than>
+              <property>gear/gear[2]/rollspeed-ms</property>
+              <value>1</value>
+            </greater-than>
+          </or>
+        </and>
+      </condition>
+      <volume>
+        <property>velocities/airspeed-kt</property>
+        <type>log</type>
+        <factor>0.5</factor>
+        <max>2.5</max>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </rumble>
+
+    <squeal>
+      <name>squeal</name>
+      <path>Sounds/squeal.wav</path>
+      <condition>
+        <or>
+          <property>gear/gear[0]/wow</property>
+          <property>gear/gear[1]/wow</property>
+          <property>gear/gear[2]/wow</property>
+        </or>
+      </condition>
+      <volume>
+        <property>velocities/speed-down-fps</property>
+        <factor>0.5</factor>
+        <max>1.0</max>
+      </volume>
+      <volume>
+        <property>velocities/airspeed-kt</property>
+        <factor>0.01</factor>
+        <max>0.2</max>
+        <max>1.0</max>
+      </volume>
+      <volume>
+        <internal>dt_stop</internal>
+        <factor>0.05</factor>
+        <max>1.0</max>
+      </volume>
+      <pitch>
+        <property>velocities/airspeed-kt</property>
+        <factor>0.0025</factor>
+        <offset>1.2</offset>
+      </pitch>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </squeal>
+
+   <!-- <flap>
+      <name>flaps</name>
+      <mode>in-transit</mode>
+      <path>Aircraft/MMWsounds/ea2015-flaps.wav</path>
+      <property>surface-positions/flap-pos-norm</property>
+      <volume>
+        <factor>5</factor>
+      </volume>
+      <reference-dist>10.0</reference-dist>
+      <max-dist>100.0</max-dist>
+    </flap>-->
+
+    <stall>
+      <name>stall</name>
+      <mode>looped</mode>
+      <path>Aircraft/MMWsounds/ea2015-stall.wav</path>
+      <condition>
+        <and>
+          <property>controls/electric/battery-switch</property>
+          <less-than>
+            <property>velocities/airspeed-kt</property>
+            <value>46</value>
+          </less-than>
+          <not>
+            <property>gear/gear[0]/wow</property>
+            <property>gear/gear[1]/wow</property>
+            <property>gear/gear[2]/wow</property>
+          </not>
+        </and>
+      </condition>
+      <reference-dist>4.0</reference-dist>
+      <max-dist>10.0</max-dist>
+    </stall>
+    
+
+          
+
+    <!--                  Toggle Switches                  -->
+
+     <click>
+      <name>Clickon</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>sim/model/click</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+     <click>
+      <name>Clickoff</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not><property>sim/model/click</property></not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+    
+     <click>
+      <name>Prise casque On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>sim/sound/chatter/enabled</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Prise caqsue Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>sim/sound/chatter/enabled</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+    
+     <click>
+      <name>Garmin 196 on</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>instrumentation/garmin196/status</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+    
+    <click>
+      <name>Garmin 196 off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+           <not>
+        <property>instrumentation/garmin196/status</property>
+           </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>  
+    
+    <click>
+      <name>Battery on</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>controls/electric/battery-switch</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Battery off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>controls/electric/battery-switch</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+    
+    <click>
+      <name>Alternator on</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>/controls/engines/engine/master-alt</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Alternator off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>/controls/engines/engine/master-alt</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Fuel Pump on</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>controls/fuel/tank/boost-pump</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Fuel Pump off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>controls/fuel/tank/boost-pump</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Taxi Light On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>sim/model/lights/taxi-lights</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Taxi Light Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>sim/model/lights/taxi-lights</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Landing Light On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>sim/model/lights/landing-lights</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Landing Light Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>sim/model/lights/landing-lights</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Nav Light On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>sim/model/lights/nav-lights</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Nav Light Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>sim/model/lights/nav-lights</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Strobe Lights On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>sim/model/lights/strobe-lights</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Strobe Lights Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>sim/model/lights/strobe-lights</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Turn and Bank On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>instrumentation/turn-indicator/serviceable</property>
+      </condition>
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Turn and Bank Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>instrumentation/turn-indicator/serviceable</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+    </click>
+<!--
+    <click>
+      <name>Flashing Beacon On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>controls/switches/flashing-beacon</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click> 
+
+    <click>
+      <name>Flashing Beacon Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>controls/switches/flashing-beacon</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+-->
+    <click>
+      <name>Pitot Heat On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>controls/anti-ice/pitot-heat</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Pitot Heat Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>controls/anti-ice/pitot-heat</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Magnetos-off</name>
+      <path>Sounds/click.wav</path>
+      <condition>
+        <not>
+          <property>controls/engines/engine/magnetos</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Magnetos-R</name>
+      <path>Sounds/click.wav</path>
+      <condition>
+        <equals>
+          <property>controls/engines/engine/magnetos</property>
+          <value>1</value>
+        </equals>
+      </condition>
+      <volume>
+        <factor>0.8</factor>
+      </volume>
+      <reference-dist>0.5</reference-dist>
+      <max-dist>5.0</max-dist>
+    </click>
+
+    <click>
+      <name>Magnetos-L</name>
+      <path>Sounds/click.wav</path>
+      <condition>
+        <equals>
+          <property>controls/engines/engine/magnetos</property>
+          <value>2</value>
+        </equals>
+      </condition>
+      <volume>
+        <factor>0.8</factor>
+      </volume>
+      <reference-dist>0.5</reference-dist>
+      <max-dist>5.0</max-dist>
+    </click>
+
+    <click>
+      <name>Magnetos-B</name>
+      <path>Sounds/click.wav</path>
+      <condition>
+        <equals>
+          <property>controls/engines/engine/magnetos</property>
+          <value>3</value>
+        </equals>
+      </condition>
+      <volume>
+        <factor>0.8</factor>
+      </volume>
+      <reference-dist>0.5</reference-dist>
+      <max-dist>5.0</max-dist>
+    </click>
+
+    <click>
+      <name>Avionics Master On</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <property>controls/switches/master-avionics</property>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+
+    <click>
+      <name>Avionics Master Off</name>
+      <path>Aircraft/MMWsounds/ea2015-click.wav</path>
+      <condition>
+        <not>
+          <property>controls/switches/master-avionics</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+    </click>
+    <!-- Tirettes-->
+
+     <!-- Vanne fuel -->
+   <click>
+     <name> fuel on </name>
+     <path>Aircraft/MMWsounds/ea2015-tirette.wav</path>
+     <condition>
+       <property>controls/fuel/tank/to_engine</property>
+     </condition>
+     <volume>
+       <factor>2.0</factor>
+     </volume>
+     <reference-dist>100</reference-dist>
+     <max-dist>1000</max-dist>      
+   </click>
+
+   <click>
+      <name> fuel off </name>
+      <path>Aircraft/MMWsounds/ea2015-tirette.wav</path>
+       <condition>
+         <not>
+             <property>controls/fuel/tank/to_engine</property>
+          </not>
+    </condition>    
+      <volume>
+           <factor>2.0</factor>
+      </volume>
+       <reference-dist>100</reference-dist>
+    <max-dist>1000</max-dist>      
+    </click>                                            
+                                                
+ <!-- Anti ice -->
+     <click>
+      <name>anti-ice on</name>
+      <path>Aircraft/MMWsounds/ea2015-tirette.wav</path>
+       <condition>
+          <property>controls/anti-ice/engine/carb-heat</property>
+    </condition>    
+      <volume>
+           <factor>2.0</factor>
+      </volume>
+       <reference-dist>100</reference-dist>
+    <max-dist>1000</max-dist>      
+    </click>
+
+ <click>
+      <name>anti-ice off</name>
+      <path>Aircraft/MMWsounds/ea2015-tirette.wav</path>
+       <condition>
+         <not>
+             <property>controls/anti-ice/engine/carb-heat</property>
+          </not>
+    </condition>    
+      <volume>
+           <factor>2.0</factor>
+      </volume>
+       <reference-dist>100</reference-dist>
+    <max-dist>1000</max-dist>      
+    </click>
+    
+    <!-- Frein parc -->
+     <click>
+      <name>frein parc on</name>
+      <path>Aircraft/MMWsounds/ea2015-tirette.wav</path>
+       <condition>
+          <property>controls/gear/brake-parking</property>
+    </condition>    
+      <volume>
+           <factor>2.0</factor>
+      </volume>
+       <reference-dist>100</reference-dist>
+    <max-dist>1000</max-dist>      
+    </click>
+
+    <click>
+      <name>frein parc off</name>
+      <path>Aircraft/MMWsounds/ea2015-tirette.wav</path>
+       <condition>
+         <not>
+             <property>controls/gear/brake-parking</property>
+          </not>
+    </condition>    
+      <volume>
+           <factor>2.0</factor>
+      </volume>
+       <reference-dist>100</reference-dist>
+    <max-dist>1000</max-dist>      
+    </click>
+    
+    <!-- Tirettes chauffage -->
+     <click>
+      <name>chauffage on</name>
+      <path>Aircraft/MMWsounds/ea2015-tirette.wav</path>
+       <condition>
+          <property>controls/pressurization/outflow-valve</property>
+    </condition>    
+      <volume>
+           <factor>2.0</factor>
+      </volume>
+       <reference-dist>100</reference-dist>
+    <max-dist>1000</max-dist>      
+    </click>
+
+    <click>
+      <name>Aircraft/MMWsounds/chauffage off</name>
+      <path>ea2015-tirette.wav</path>
+      <condition>
+        <not>
+          <property>controls/pressurization/outflow-valve</property>
+        </not>
+      </condition>    
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>      
+    </click>
+
+    <squish>
+      <name>Primer Out</name>
+      <path>Sounds/squeal.wav</path>
+      <condition>
+        <property>controls/engines/engine/primer-pump</property>
+      </condition>
+      <volume>
+        <factor>0.1</factor>
+      </volume>
+    </squish>
+
+    <squish>
+      <name>Primer In</name>
+      <path>Sounds/squeal.wav</path>
+      <condition>
+        <not>
+          <property>controls/engines/engine/primer-pump</property>
+        </not>
+      </condition>
+      <volume>
+        <factor>0.1</factor>
+      </volume>
+    </squish>
+<announcement>
+<name>welcome</name>
+ <path>Aircraft/MMWsounds/Welcome.wav</path>
+ <condition>
+  <property>sim/sound/welcome</property>
+ </condition>
+        <volume>
+            <factor>300</factor>
+        </volume>
+</announcement>
+<announcement>
+<name>safety</name>
+ <path>Aircraft/MMWsounds/Safety.wav</path>
+ <condition>
+  <property>sim/sound/safety</property>
+ </condition>
+        <volume>
+            <factor>300</factor>
+        </volume>
+</announcement>
+<announcement>
+<name>seatbeltoff</name>
+ <path>Aircraft/MMWsounds/seatbeltoff.wav</path>
+ <condition>
+  <property>sim/sound/seatbeltoff</property>
+ </condition>
+        <volume>
+            <factor>300</factor>
+        </volume>
+</announcement>
+<announcement>
+<name>descent</name>
+ <path>Aircraft/MMWsounds/descent.wav</path>
+ <condition>
+  <property>sim/sound/descent</property>
+ </condition>
+        <volume>
+            <factor>300</factor>
+        </volume>
+</announcement>
+<announcement>
+<name>touchdown</name>
+ <path>Aircraft/MMWsounds/touchdown.wav</path>
+ <condition>
+  <property>sim/sound/touchdown</property>
+ </condition>
+        <volume>
+            <factor>300</factor>
+        </volume>
+</announcement>
+
+  </fx>
+
+</PropertyList>

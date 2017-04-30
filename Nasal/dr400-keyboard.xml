@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+  <key n="115">
+    <name>s</name>
+    <desc>Starter</desc>
+    <binding>
+      <command>property-assign</command>
+      <property>controls/engines/engine/starter_cmd</property>
+      <value>1</value>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>property-assign</command>
+        <property>controls/engines/engine/starter_cmd</property>
+        <value>0</value>
+      </binding>
+    </mod-up>
+  </key>
+
+</PropertyList>
+

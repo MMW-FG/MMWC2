@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+  <sim>
+
+       <description>MMW C2</description>
+    <author>Ausdkunst ... (see README file)</author>
+    <flight-model archive="y">yasim</flight-model>
+    <aero archive="y">MMW-yasim</aero>
+
+    <startup>
+      <splash-texture>Aircraft/MMWC2/splash.png</splash-texture>
+    </startup>
+
+    <rating>
+      <FDM type="int">     3 </FDM>
+      <systems type="int"> 2 </systems>
+      <cockpit type="int"> 3 </cockpit>
+      <model type="int">   3 </model>
+    </rating>
+ <view>
+   <internal archive="y">true</internal>
+   <config>
+     <x-offset-m archive="y">-0.4856</x-offset-m><!--blender y-->
+     <y-offset-m archive="y">0.582</y-offset-m><!-- blender z-->
+     <z-offset-m archive="y">0.36323</z-offset-m><!-- blender x -->
+     <pitch-offset-deg>-15</pitch-offset-deg>
+   </config>
+  </view>
+     <view n="103">
+    <name>Copilot View</name>
+    <type>lookfrom</type>
+    <internal type="bool">true</internal>
+    <config>
+      <from-model type="bool">true</from-model>
+      <from-model-idx type="int">0</from-model-idx>
+     <x-offset-m archive="y">0.4856</x-offset-m><!--blender y-->
+     <y-offset-m archive="y">0.582</y-offset-m><!-- blender z-->
+     <z-offset-m archive="y">0.36323</z-offset-m><!-- blender x -->
+     <pitch-offset-deg>-15</pitch-offset-deg>
+   </config>
+  </view>
+  
+<help>
+<text> Welcome to Melbourne Motor Works Aircraft.  To start the engine, first press } three times before pressing s.
+</text>
+</help>
+ <sound>
+      <path archive="y">Sounds/MMW-sound.xml</path>
+    </sound>
+<menubar>
+		<default>
+		<menu n="10">
+			<label>MMW</label>
+			<enabled type="bool">true</enabled>
+			<item>
+			<name>Announcement</name>
+			<label>Announcement</label>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 var announcement = gui.Dialog.new("sim/gui/dialogs/announcement/dialog", "Aircraft/MMWC2/Sounds/MMW-announcement.xml");
+				 announcement.open();
+				</script>
+			</binding>
+		</item>
+		</menu>
+		</default>
+	</menubar>
+    <model>
+      <path archive="y">Models/MMWC2.xml</path>
+    </model>
+
+    <flaps>
+      <setting> 0.00 </setting>
+      <setting> 0.25 </setting> <!-- 15 deg -->
+      <setting> 0.7 </setting> <!-- 60 deg -->
+    </flaps>
+
+    <multiplay>
+      <generic> 
+      <float n="1" alias="/controls/gear/brake-parking"/>
+       <int n="0" alias="/gear/gear[0]/wow"/>
+	    <int n="1" alias="/gear/gear[1]/wow"/>
+	    <int n="2" alias="/gear/gear[2]/wow"/>
+	    <int n="3" alias="/gear/gear[3]/wow"/>
+	<int n="4" alias="/engines/engine[0]/running"/>
+      </generic>
+    </multiplay>
+   
+
+    <weight n="0">
+        <name>Pilot</name>
+        <weight-lb>200</weight-lb>
+        <max-lb>250</max-lb>
+        <min-lb>100</min-lb>
+    </weight>
+
+    <weight n="1">
+        <name>Copilot</name>
+        <weight-lb>200</weight-lb>
+        <max-lb>250</max-lb>
+        <min-lb>0</min-lb>
+    </weight>
+
+    <weight n="2">
+        <name>Pax</name>
+        <weight-lb>0</weight-lb>
+        <max-lb>250</max-lb>
+        <min-lb>0</min-lb>
+    </weight>
+
+    <weight n="3">
+        <name>Cargo</name>
+        <weight-lb>0</weight-lb>
+        <max-lb>250</max-lb>
+        <min-lb>0</min-lb>
+    </weight>
+
+  </sim>
+
+<controls>
+<gear>
+
+<brake-parking>1</brake-parking></gear>
+ <electric>
+      <battery-switch>0</battery-switch>
+</electric>
+</controls>
+  <nasal>
+<MMWC2>
+<file>Nasal/fuel-cell.nas</file>
+<file>Nasal/Electrical.nas</file>
+</MMWC2>
+  </nasal>
+
+
+
+
+
+</PropertyList>
+

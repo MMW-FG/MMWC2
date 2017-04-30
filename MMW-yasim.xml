@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- EchoAir Xray : D-ECHO 2016     
+
+              source          : own design
+
+-->
+
+<airplane mass="900" version="YASIM_VERSION_CURRENT">
+
+  <!-- Approach configuration -->
+  <approach speed="47" aoa="4" fuel="0.3">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.1"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture" value="1"/>
+    <control-setting axis="/controls/flight/flaps" value="1.0"/>
+  </approach>
+
+  <!-- Cruise configuration -->
+  <cruise speed="120" alt="8000" fuel="0.7">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.5"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture" value="1"/>
+    <control-setting axis="/controls/flight/flaps" value="0"/>
+  </cruise>
+
+  <cockpit x="1.7521" y="-0.1831" z="-0.4472"/>
+
+  <fuselage ax="3.4955" ay="0" az="-0.0877" bx="1.2525" by="0" bz="0.2862" width="1.1" midpoint="1" taper="0.3"/>
+  <fuselage ax="1.2525" ay="0" az="0.2862" bx="-2.6331" by="0" bz="0.1085" width="1.1" midpoint="0" taper="0.1"/>
+
+   <wing x="0.8294" y="0.7477" z="-0.2513"
+        chord="1"
+        length="4"
+        taper="1"
+        sweep="4"
+        dihedral="2"
+        camber="0.08">
+        <stall aoa="24" width="6.0" peak="1.5"/>
+        <flap0 start="0.05" end="0.68" lift="1.4" drag="1.5"/>
+        <flap1 start="0.68" end="1.00" lift="1.1" drag="1.0"/>
+
+        <control-input axis="/controls/flight/flaps" control="FLAP0"/>
+        <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
+        <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/> 
+
+        <control-output control="FLAP0" prop="/surface-positions/flap-pos-norm"/>
+        <control-output control="FLAP1" side="left" prop="/surface-positions/left-aileron-pos-norm"/>
+        <control-output control="FLAP1" side="right" prop="/surface-positions/right-aileron-pos-norm"/>
+
+        <control-speed control="FLAP0" transition-time="5"/>
+        <control-speed control="FLAP1" transition-time="0.01"/>
+  </wing>
+
+
+  <hstab x="-2.0947" y="0.0" z="0.1192" 
+         chord="0.653"
+         taper="0.9"
+         length="1.4">
+         <stall aoa="18" width="1" peak="1.5"/>
+         <flap0 start="0" end="1" lift="1.5" drag="1.3"/>
+       
+         <control-input axis="/controls/flight/elevator" control="FLAP0" squared="true"/>
+         <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+       
+         <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+  </hstab>
+
+  <vstab x="-2.0947" y="0.0" z="0.1192" 
+       chord="1.2"
+       length="1.2" 
+       taper="0.40"
+       sweep="25">
+       <stall aoa="16" width="1" peak="1.5"/>
+       <flap0 start="0" end="1" lift="1.75" drag="1.35"/>
+       
+       <control-input axis="/controls/flight/rudder" control="FLAP0" invert="true"/>       
+       <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm" min="1" max="-1"/>
+  </vstab>
+  <!-- Engines   source            : own design
+
+                 name              : EchoAir eVision LSA X4    
+  -->
+
+  <propeller x="3.2" y="0" z="-0.07943"
+             mass="240" 
+             moment="1.29654"
+             radius="0.882"
+             cruise-speed="140" 
+             cruise-rpm="2490"
+             cruise-alt="8000" 
+             cruise-power="140"
+             takeoff-power="150" 
+             takeoff-rpm="2800" >
+             <actionpt x="3.48713" y="0" z="-0.07943"/>
+             <piston-engine eng-rpm="2800"
+                            alt="0" 
+                            eng-power="150"
+                            displacement="230"
+                            compression="6.5">
+             <control-input control="PROPFEATHER" axis="/controls/engines/engine[0]/propeller-feather"/>
+             <control-input control="THROTTLE" axis="/controls/engines/engine[0]/throttle" />
+             <control-input control="STARTER" axis="/controls/engines/engine[0]/starter" />
+             <control-input control="MAGNETOS" axis="/controls/engines/engine[0]/magnetos" />
+             <control-input control="MIXTURE" axis="/controls/engines/engine[0]/mixture" />
+             </piston-engine>
+  </propeller>
+  <gear x="2.9153" y="0" z="-1.0456" 
+        compression="0.15" 
+        spring="0.6">
+        <control-input axis="/controls/flight/rudder" control="STEER" src0="-1.0" src1="1.0" dst0="-0.2" dst1="0.2"/>
+   </gear>
+
+  <gear x="0.7765" y="1.6923" z="-1.0484" 
+        compression="0.15" 
+        spring="0.6">
+        <control-input axis="/controls/gear/brake-left" control="BRAKE" split="true"/>
+        <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+  </gear>
+
+  <gear x="0.7765" y="-1.6923" z="-1.0484" 
+        compression="0.15" 
+        spring="0.6">
+        <control-input axis="/controls/gear/brake-right" control="BRAKE" split="true"/>
+        <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+  </gear>
+
+
+  <tank x="0.4176" y="-0.2645" z="-0.3202" capacity="198.45" />
+  <tank x="1.4176" y="-0.0" z="-0.3202" capacity="198.45" />
+  <tank x="0.4176" y="0.2645" z="-0.3202" capacity="198.45" />
+      
+  <!-- Pilot -->
+  <weight x="1.2905" y="-0.1831" z="-0.048" mass-prop="sim/weight[0]/weight-lb"/>
+  <!-- Copilot -->
+-  <weight x="1.2905" y="0.1831" z="-0.048" mass-prop="sim/weight[1]/weight-lb"/>
+  <!-- Pax -->
+  <weight x="0.4193" y="-0.0" z="-0.3857" mass-prop="sim/weight[2]/weight-lb"/>
+  <!-- Cargo -->
+  <weight x="0.2" y="0.0" z="-0.3857" mass-prop="sim/weight[3]/weight-lb"/>
+
+
+  <!-- Mass displacment -->
+  <ballast x="-3" y="0" z="1" mass="-0"/>
+
+</airplane>

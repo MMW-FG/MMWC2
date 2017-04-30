@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PropertyList>
+  <path>MMWC2.ac</path>
+<!-- ========== Effects ========= -->
+<effect>
+ <inherits-from>Effects/glass</inherits-from>
+ <object-name>Windows</object-name>
+</effect>
+
+<!-- STEERINGWHEEL -->
+
+<animation>  
+ <type>rotate</type>  
+ <object-name>Steering</object-name>
+ <property>surface-positions/rudder-pos-norm</property>
+ <factor>40</factor>
+ <axis>
+  <x1-m>-0.40678</x1-m>
+  <y1-m>-0.49215</y1-m>
+  <z1-m>0.19114</z1-m>
+  <x2-m>-0.41496</x2-m>
+  <y2-m>-0.49273</y2-m>
+  <z2-m>0.18708</z2-m>
+ </axis>
+</animation>
+
+<!--GEAR-->
+
+<!--Wheel steer animation-->
+    <animation>
+    <type>rotate</type>
+    <object-name>fwheel</object-name>
+    <property>surface-positions/rudder-pos-norm</property>
+    <factor>4</factor>
+    <center>
+      <x-m> -1.97844 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m>-0.54693</z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> -1 </z>
+    </axis>
+  </animation>
+
+<!-- Wheel roll animation-->
+  <animation>
+    <type>spin</type>
+    <object-name>fwheel</object-name>
+    <property>gear/gear[0]/rollspeed-ms</property>
+    <factor> 10 </factor>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  <center>
+      <x-m> -1.97844 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m>-0.54693</z-m>
+    </center>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>rwheel</object-name>
+    <property>gear/gear[1]/rollspeed-ms</property>
+    <factor> 10 </factor>
+  <center>
+      <x-m> 1.42551 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m>-0.35826</z-m>
+    </center>
+    <axis>
+      <x>  0.000 </x>
+      <y> -1.000 </y>
+      <z>  0.000 </z>
+    </axis>
+  </animation>
+
+<!-- Braking lights-->  
+<animation>
+ <type>material</type>
+ <object-name>brakes</object-name>
+<emission>
+  <red>1.0</red>
+  <green>1.0</green>
+  <blue>1.0</blue>
+  <factor-prop>sim/multiplay/generic/float[1]</factor-prop>
+ </emission>
+</animation>
+
+<!-- Nav Lights --> 
+<model>
+    <path>light/RedLight.xml</path>
+    <offsets>
+      <x-m>-0.06263 </x-m>
+      <y-m> -5.32198</y-m>
+      <z-m> 0.39852 </z-m>
+    </offsets>
+  </model>
+  <model>
+    <path>light/GreenLight.xml</path>
+    <offsets>
+      <x-m>-0.06263 </x-m>
+      <y-m> 5.32198</y-m>
+      <z-m> 0.39852 </z-m>
+    </offsets>
+  </model>
+
+<!-- Startup --> 
+<animation>
+ <type>material</type>
+ <object-name>Headlamp</object-name>
+ <emission>
+  <red>1.0</red>
+  <green>1.0</green>
+  <blue>1.0</blue>
+  <factor-prop>sim/multiplay/generic/int[4]</factor-prop>
+ </emission>
+</animation>
+
+<animation>
+ <type>material</type>
+ <object-name>Windows</object-name>
+ <emission>
+  <red>0.0</red>
+  <green>1.0</green>
+  <blue>4.0</blue>
+  <factor-prop>sim/multiplay/generic/int[4]</factor-prop>
+ </emission>
+</animation>
+    </PropertyList>
